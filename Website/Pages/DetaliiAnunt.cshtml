@@ -1,0 +1,44 @@
+﻿@page "{id}"
+@model DetaliiAnuntModel
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@Model.Anunt[0].TitluAnunt</title>
+</head>
+<body class="bg-light text-dark my-3">
+
+    <div class="container">
+        <h1>@Model.Anunt[0].TitluAnunt</h1>
+        <p>@Model.Anunt[0].NumeProdus</p>
+        <p>@Model.Anunt[0].Pret RON</p>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    @foreach (var imagine in Model.Imagini)
+                    {
+                        var img = imagine.UrlImagine.Split('/');
+                        <div class="col-md-4">
+                            <img class="img-fluid img-thumbnail d-inline-block" src="~/../images/@img[9]" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <h3 class="mb-3 border-bottom">Contact</h3>
+        <form method="post" asp-page-handler="TrimiteMesaj">
+            <input type="hidden" name="idAnunt" value="@Model.Anunt[0].IdAnunt" />
+            <div class="form-group">
+                <label for="subiect">Subiect</label>
+                <input type="text" class="form-control" id="subiect" name="subiect" required />
+            </div>
+            <div class="form-group">
+                <label for="continut">Continut</label>
+                <textarea class="form-control" id="continut" name="continut" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Trimite mesaj</button>
+        </form>
+    </div>
+</body>
+</html>

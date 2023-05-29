@@ -1,0 +1,69 @@
+﻿@page
+@model Website.Pages.RapoarteModel
+@using Newtonsoft.Json
+
+<form method="post">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Vandute" id="inlineCheckbox2" value="2">
+        <label class="form-check-label" for="inlineCheckbox2">Anunturi Vandute</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Nevandute" id="inlineCheckbox3" value="3">
+        <label class="form-check-label" for="inlineCheckbox3">Anunturi Nevandute</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Categorii" id="inlineCheckbox3" value="4">
+        <label class="form-check-label" for="inlineCheckbox3">Categorii</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Subcategorii" id="inlineCheckbox3" value="5">
+        <label class="form-check-label" for="inlineCheckbox3">Subcategorii</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Orase" id="inlineCheckbox3" value="6">
+        <label class="form-check-label" for="inlineCheckbox3">Orase</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Promovari" id="inlineCheckbox3" value="7">
+        <label class="form-check-label" for="inlineCheckbox3">Promovari</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="Lista Neagra" id="inlineCheckbox3" value="7">
+        <label class="form-check-label" for="inlineCheckbox3">Lista Neagra</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Genereaza Raport</button>
+</form>
+<hr />
+@{
+    if (TempData["rezultate"] != null)
+    {
+        var rezultate = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(TempData["rezultate"].ToString());
+        if (rezultate.Count() != 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            @foreach (var rezultat in rezultate.FirstOrDefault())
+                             {
+                                <th>@rezultat.Key</th>
+                             }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (var rezultat in rezultate)
+                             {
+                                foreach (var value in rezultat)
+                                {
+                                    <td>@value.Value</td>
+                                }
+                                <tr></tr>
+                             }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+}

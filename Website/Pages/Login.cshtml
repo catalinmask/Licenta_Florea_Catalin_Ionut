@@ -1,0 +1,25 @@
+﻿@page
+@model Website.Pages.LoginModel
+@{
+
+    ViewData["Title"] = "Login";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Login</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" asp-for="Email" id="email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="Parola">Password</label>
+                    <input type="password" class="form-control" asp-for="Parola" id="parola" name="Parola" required>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

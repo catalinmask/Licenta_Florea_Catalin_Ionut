@@ -1,0 +1,77 @@
+﻿@page "{id}"
+@model Website.Pages.ProfilModel
+@{
+}
+<head>
+    <h1>Detalii utilizator</h1>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="form-group">
+                    <label for="nume">Nume:</label>
+                    <input type="text" id="nume" name="nume" class="form-control" value="@Model.Nume" />
+                </div>
+                <div class="form-group">
+                    <label for="prenume">Prenume:</label>
+                    <input type="text" id="prenume" name="prenume" class="form-control" value="@Model.Prenume" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" value="@Model.Email" />
+                </div>
+                <div class="form-group">
+                    <label for="parola">Parola:</label>
+                    <input type="password" id="parola" name="parola" class="form-control" value="@Model.Parola" />
+                </div>
+                <div class="form-group">
+                    <label for="numarTelefon">Numar telefon:</label>
+                    <input type="tel" id="numarTelefon" name="numarTelefon" class="form-control" value="@Model.NumarTelefon" />
+                </div>
+                <div class="form-group">
+                    <label for="dataNasterii">Data nasterii:</label>
+                    <input type="text" id="dataNasterii" name="dataNasterii" class="form-control" value="@Model.DataNasterii" />
+                </div>
+                <div class="form-group">
+                    <label for="adresa">Adresa:</label>
+                    <input type="text" id="adresa" name="adresa" class="form-control" value="@Model.Adresa" />
+                </div>
+                <div class="form-group">
+                    <label for="oras"> Oras  </label>
+                    <input type="text" id="adresa" name="adresa" class="form-control" value="@Model.Oras" />
+                </div>
+                <button type="submit" class="btn btn-primary">Salveaza</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Anunturile mele</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titlu</th>
+                        <th>Data postarii</th>
+                        <th>Actiune</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var anunt in Model.Anunturi)
+                    {
+                        <tr>
+                            <td>@anunt.TitluAnunt</td>
+                            <td>@anunt.DataAnunt</td>
+                            <td>
+
+                                <button onclick="window.location.href='/EditareAnunt/@anunt.IdAnunt'">Editeaza</button>
+                                <form method="post" asp-page-handler="Delete">
+                                    <input type="hidden" name="id" value="@anunt.IdAnunt" />
+                                    <button type="submit">Sterge</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>

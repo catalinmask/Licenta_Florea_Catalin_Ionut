@@ -1,0 +1,68 @@
+﻿@page "{id}"
+@model Website.Pages.EditareAnuntModel
+@{
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="TitluAnunt">Titlu anunt</label>
+        <input type="text" asp-for="TitluAnunt" class="form-control" id="TitluAnunt" name="TitluAnunt">
+    </div>
+    <div class="form-group">
+        <label for="NumeProdus">Nume produs</label>
+        <input type="text" asp-for="NumeProdus" class="form-control" id="NumeProdus" name="NumeProdus">
+    </div>
+    <div class="form-group">
+        <label for="Pret">Pret</label>
+        <input type="number" asp-for="Pret" class="form-control" id="Pret" name="Pret">
+    </div>
+    @*<div class="form-group">
+        <label for="continut">Detalii Anunt</label>
+        <textarea class="form-control" id="continut" name="continut"></textarea>
+    </div>*@
+    <div class="form-group">
+        <label for="Categorie">Categorie</label>
+        <select name="CategorieSelectata" asp-for="CategorieSelectata">
+            @foreach (var categorie in Model.Categorii)
+            {
+                <option value="@categorie">@categorie</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary" asp-page-handler="Subcategorii">Selecteaza Categoria</button>
+    </div>
+    <div class="form-group">
+        <label for="Subcategorie">Subcategorie</label>
+        <select name="subcategorie">
+            @foreach (var subcategorie in Model.Subcategorii)
+            {
+                <option value="@subcategorie">@subcategorie</option>
+            }
+        </select>
+    </div>
+    <br />
+    <div class="form-group">
+        <template id="image-template">
+            <div class="form-group">
+                <label for="URLImagini" asp-for="URLImagini" class="control-label">Imagine:</label>
+                <input type="file" asp-for="URLImagini" name="URLImagini" class="form-control" accept="image/*" required multiple />
+            </div>
+        </template>
+        <br />
+        <button id="add-image-btn" class="btn btn-primary">Adaugă imagine</button>
+    </div>
+
+    <br />
+    <div id="image-container"></div>
+    <br />
+    <button type="submit" class="btn btn-primary" asp-page-handler="OnPostAsync">Editeaza Anunt</button>
+</form>
+
+<script>var imageTemplate = document.getElementById("image-template");
+
+    var imageContainer = document.getElementById("image-container");
+
+    document.getElementById("add-image-btn").addEventListener("click", function () {
+
+        var newImage = imageTemplate.content.cloneNode(true);
+
+        imageContainer.appendChild(newImage);
+    });</script>

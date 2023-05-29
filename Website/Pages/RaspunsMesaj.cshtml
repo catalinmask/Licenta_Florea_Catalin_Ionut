@@ -1,0 +1,18 @@
+﻿@page "{id}/{id2}"
+@model Website.Pages.RaspunsMesajModel
+@{
+}
+<body class="bg-light text-dark my-3">
+    <form method="post" asp-page-handler="TrimiteMesaj" asp-route-id="@Model.idDestinatar" asp-route-id2="@Model.idAnunt">
+        <input type="hidden" name="idAnunt" value="@Model.idAnunt" />
+        <div class="form-group">
+            <label for="subiect">Subiect</label>
+            <input type="text" class="form-control" id="subiect" name="subiect" required />
+        </div>
+        <div class="form-group">
+            <label for="continut">Continut</label>
+            <textarea class="form-control" id="continut" name="continut" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Trimite mesaj</button>
+    </form>
+</body>

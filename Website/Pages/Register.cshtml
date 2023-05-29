@@ -1,0 +1,66 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <h2 class="text-center">Register</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post">
+                @if(Model.Inregistrari==1)
+{
+                        <p>EMAIL-UL sau PAROLA sunt deja folosite</p>
+}
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nume"></label>
+                    <input asp-for="Nume" class="form-control" required/>
+                    <span asp-validation-for="Nume" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prenume"></label>
+                    <input asp-for="Prenume" class="form-control" required/>
+                    <span asp-validation-for="Prenume" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" required/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parola"></label>
+                    <input asp-for="Parola" type="password" class="form-control" required/>
+                    <span asp-validation-for="Parola" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumarTelefon">Numar Telefon </label>
+                    <input asp-for="NumarTelefon" class="form-control" required />
+                    <span asp-validation-for="NumarTelefon" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataNasterii">Data Nasterii</label>
+                    <input asp-for="DataNasterii" type="date" class="form-control" required/>
+                    <span asp-validation-for="DataNasterii" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Adresa"></label>
+                    <input asp-for="Adresa" class="form-control" required/>
+                    <span asp-validation-for="Adresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Oras"></label>
+                    <input asp-for="Oras" type="text" id="Oras" name="Oras" class="form-control" />
+                    <span asp-validation-for="Oras" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

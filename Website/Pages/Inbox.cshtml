@@ -1,0 +1,36 @@
+﻿@page
+@model Website.Pages.InboxModel
+@{
+}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nume Destinatar</th>
+            <th scope="col">Data</th>
+            <th scope="col">Subiect</th>
+            <th scope="col">Content</th>
+            <th scope="col">Raspunde Mesajului</th>
+            <th scope="col">Sterge Mesajul</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var detalii in @Model.Mesaje)
+            {
+                <td>@detalii.Nume @detalii.Prenume</td>
+                <td>@detalii.DataMesaj</td>
+                <td>@detalii.Subiect</td>
+                <td>@detalii.Mesaj</td>
+                <td><button class="btn btn-info" onclick="window.location.href='/RaspunsMesaj/@detalii.idExpeditor/@detalii.idAnunt'">Raspunde</button></td>
+                <td>
+                    <form method="post" asp-page-handler="Delete">
+                        <input type="hidden" name="messageId" value="@detalii.idMesaj" />
+                        <button type="submit" class="btn btn-info">Sterge</button>
+                    </form>
+                </td>
+                <tr></tr>
+             }
+        </tr>
+      </tbody>
+</table>

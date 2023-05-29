@@ -1,0 +1,35 @@
+﻿@page "{id}"
+@model Website.Pages.PaginaAnunturiModel
+@{
+}
+<div class="row">
+    @foreach (var anunt in Model.AnunturiPromovate)
+    {
+        var img = anunt.URLImagine.Split('/');
+        <div class="col-md-4 mb-3">
+            <div class="card custom-card">
+                <img class="card-img-top img-fluid" src="~/../images/@img[9]" alt="@anunt.TitluAnunt">
+                <div class="card-body">
+                    <h5 class="card-title">@anunt.TitluAnunt</h5>
+                    <p class="card-text">@anunt.NumeProdus</p>
+                    <p class="card-text">@anunt.Pret.ToString("C")</p>
+                    <a href="/DetaliiAnunt/@anunt.IdAnunt" class="btn btn-primary">Detalii</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .custom-card {
+        height: 100%; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: space-between;
+    }
+
+        .custom-card img {
+            flex-shrink: 0; 
+            max-height: 100%; 
+        }
+</style>
